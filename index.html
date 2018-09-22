@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>FGO轮播图</title>
+		<link rel="stylesheet" href="css/FGO.css" />
+	</head>
+	<body>
+		<div id="webbody">
+			<div id="title">原生Javascript轮播图</div>
+			<div class="lunbo">
+				<div class="lunbo1">
+					<img src="img/1.png">
+					<img src="img/2.png">
+					<img src="img/3.png">
+					<img src="img/4.png">
+				</div>
+			</div>
+			<button id="but1"></button>
+			<button id="but2"></button>
+		</div>
+	</body>
+	<script type="text/javascript">
+		
+		//得到含有图片的盒子
+		var lunbo = document.getElementsByClassName("lunbo")[0];
+		var lunbo1 = document.getElementsByClassName("lunbo1")[0];
+		
+		//去除css对原生js的影响
+		lunbo.removeChild(lunbo1);
+		
+		var newlunbo1 = document.createElement('div');
+		newlunbo1.style.width = "3200px";
+		newlunbo1.style.height = "500px";
+		newlunbo1.style.position = "relative";
+		newlunbo1.style.left = "0px";
+		
+		var img1 = document.createElement('img');
+		var img2 = document.createElement('img');
+		var img3 = document.createElement('img');
+		var img4 = document.createElement('img');
+		
+		img1.src = "img/1.png";
+		img1.style.width = "800px";
+		img1.style.height = "500px";
+		
+		img2.src = "img/2.png";
+		img2.style.width = "800px";
+		img2.style.height = "500px";
+		
+		img3.src = "img/3.png";
+		img3.style.width = "800px";
+		img3.style.height = "500px";
+		
+		img4.src = "img/4.png";
+		img4.style.width = "800px";
+		img4.style.height = "500px";
+		
+		newlunbo1.appendChild(img1);
+		newlunbo1.appendChild(img2);
+		newlunbo1.appendChild(img3);
+		newlunbo1.appendChild(img4);
+		lunbo.appendChild(newlunbo1);
+		
+		//定义图片动画事件
+		
+		//设定初始时间
+		var time = 0;
+		var wid = 1;
+		var pic = new Array();
+		
+		//构造四张图片
+		function conpic1(){
+				pic[wid] =  document.createElement('img');
+				pic[wid].src = "img/1.png";
+		        pic[wid].style.width = "800px";
+		        pic[wid].style.height = "500px";
+		        
+		        newlunbo1.appendChild(pic[wid]);
+		}
+		
+		function conpic2(){
+		        
+		        pic[wid + 1] =  document.createElement('img');
+				pic[wid + 1].src = "img/2.png";
+		        pic[wid + 1].style.width = "800px";
+		        pic[wid + 1].style.height = "500px";
+		        
+		        newlunbo1.appendChild(pic[wid + 1]);
+		}
+		
+		function conpic3(){
+		        
+		        pic[wid + 2] =  document.createElement('img');
+				pic[wid + 2].src = "img/3.png";
+		        pic[wid + 2].style.width = "800px";
+		        pic[wid + 2].style.height = "500px";
+		        
+		        newlunbo1.appendChild(pic[wid + 2]);
+		}
+		
+		function conpic4(){
+		        
+		        pic[wid + 3] =  document.createElement('img');
+				pic[wid + 3].src = "img/4.png";
+		        pic[wid + 3].style.width = "800px";
+		        pic[wid + 3].style.height = "500px";
+		        
+		        newlunbo1.appendChild(pic[wid + 3]);
+		}
+		
+		//定义图片动画事件
+		function picani(){
+			var intt = window.setInterval(function(){				
+				
+				if(time < 2000 || (time > 2398 && time < 4400) || (time > 4800 && time < 6800) || 
+				(time > 7200 && time < 9200)){
+				    time ++;
+			    }
+				else if(time == 7200){
+					newlunbo1.style.width = (1 + wid)*3200 + "px";
+					conpic1();
+					conpic2();
+					conpic3();
+					conpic4();
+					wid = wid + 1;
+					time ++;
+				}
+				else if(time == 9200){
+					time = time - 9200;
+				}
+				else {
+					newlunbo1.style.left = newlunbo1.offsetLeft - 2 + "px";
+					time ++;
+				}
+		},0.25);
+   }
+	    
+        //执行动画函数
+		picani();
+            
+	</script>
+</html>
